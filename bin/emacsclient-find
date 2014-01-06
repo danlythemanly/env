@@ -1,0 +1,4 @@
+#!/bin/bash
+#emacsclient -e "(find-file-other-window \"$1\")"
+emacsclient -e "(find-file \"$1\")"
+

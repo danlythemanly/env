@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+if [[ $1 == "emacs" ]]; then
+    F=`echo "$(dirname $(readlink -e $2))/$(basename $2)"`
+    emacsclient -e "(find-file-other-window \"/sudo::$F\")"
+else
+    /usr/bin/sudo "$@"
+fi
+
+
