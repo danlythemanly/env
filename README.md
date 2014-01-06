@@ -44,8 +44,10 @@ where emacsclient-find is just
 
     emacsclient -e "(find-file \"$1\")"
 
-To use the bash aliases, I just add to my .bashrc the following:
+To use the bash aliases, run the install script to symlink the scripts
+to ~/bin, then add to your .bashrc the following:
 
-    . ~/projects/env/bash_android
-    . ~/projects/env/bash_emacs
+    . ~/env/bash_android
+    . ~/env/bash_emacs
+
 
