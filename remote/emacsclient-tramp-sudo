@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ $1 == "emacs" ]]; then
+    emacsclient-tramp-find root $2
+else
+    /usr/bin/sudo "$@"
+fi
+

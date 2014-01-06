@@ -1,0 +1,7 @@
+export PATH=~/bin:$PATH
+
+export ALTERNATE_EDITOR=""
+export EDITOR=emacs
+
+alias emacs='emacsclient-tramp-find djwillia'
+alias sudo='emacsclient-tramp-sudo'
