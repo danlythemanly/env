@@ -26,6 +26,12 @@
 ;; personal key bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun mac-copy ()
+  "Copy region to mac clipboard"
+  (interactive)
+  (shell-command-on-region (region-beginning) (region-end) "pbcopy"))
+
+(global-set-key "\C-cc" 'mac-copy)
 (global-set-key "\C-cg" 'goto-line)
 
 (global-set-key (kbd "M-J")  'windmove-left)
@@ -195,7 +201,12 @@
 (setq backup-directory-alist `(("." . "~/.emacs-saves")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; columns
+;; appearance
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq column-number-mode t)
+(menu-bar-mode -1)
+
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1) 
