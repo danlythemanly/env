@@ -31,6 +31,12 @@
   (interactive)
   (shell-command-on-region (region-beginning) (region-end) "pbcopy"))
 
+(defun linux-copy ()
+  "Copy region to linux clipboard"
+  (interactive)
+  (shell-command-on-region (region-beginning) (region-end) "xsel-copy"))
+
+
 (global-set-key "\C-cc" 'mac-copy)
 (global-set-key "\C-cg" 'goto-line)
 
