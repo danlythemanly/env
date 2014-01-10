@@ -1,5 +1,3 @@
 #!/bin/bash
 
-while IFS= read -r line; do
-    printf '%s\n' "$line"
-done | xsel -b -i
+cat /dev/stdin | xsel -b -i 
