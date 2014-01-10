@@ -1,8 +1,9 @@
 export PATH=~/bin:$PATH
 
 export ALTERNATE_EDITOR=""
-export EDITOR=emacs
+export EDITOR='emacsclient-find'
+export PAGER='emacsclient-pager'
 
 alias emacs='emacsclient-find'
 alias sudo='emacsclient-sudo'
-
+alias man='emacsclient-man'

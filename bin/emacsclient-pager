@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cat /dev/stdin | col -bx > /tmp/paged-output
+emacsclient -e "(progn (find-file \"/tmp/paged-output\") (rename-buffer \"*paged-output*\" t))"
+
+

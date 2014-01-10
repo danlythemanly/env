@@ -1,5 +1,16 @@
 #!/bin/bash
 
-for f in `ls bin`; do ln -s `pwd`/bin/$f ~/bin/$f; done
-ln -s `pwd`/.emacs ~/.emacs
-
+for f in `ls bin`; do 
+    if [ -f ~/bin/$f ]; then
+        echo "*skipping: $f"
+    else
+        echo "LINKING: $f"
+        ln -i -s `pwd`/bin/$f ~/bin/$f
+    fi
+done
+if [ -f ~/.emacs ]; then
+    echo "*skipping: .emacs"
+else
+    echo "LINKING: .emacs"
+    ln -i -s `pwd`/.emacs ~/.emacs
+fi
