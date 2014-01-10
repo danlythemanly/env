@@ -71,9 +71,16 @@
 
 (defun bash (buffer-name)
   "Start bash terminal and rename buffer."
-  (interactive (list (read-string "buffer name: " "*term*")))
+  (interactive (list (read-string "buffer name: " "^term^")))
   (term "/bin/bash")
   (rename-buffer buffer-name t))
+
+(defun ssh (host)
+  "ssh to a host in new term."
+  (interactive (list (read-string "host: ")))
+  (setenv "EMACS_SSH_HOST" host)
+  (term "sshwrap.bash")
+  (rename-buffer (concat "^" host "^") t))
 
 (global-set-key (kbd "M-N")  'bash)
 
@@ -141,10 +148,11 @@
 ;;                      (alternate binding: "T" --> "tell").
 ;;      C-c s D         Dired this buffer's directory.
 
-(if (file-exists-p "/usr/share/emacs/site-lisp/xcscope.el")
+(if (file-exists-p "~/.emacs.d/xcscope.el/xcscope.el")
     (progn
-      (load-file "/usr/share/emacs/site-lisp/xcscope.el")
-      (require 'xcscope)))
+      (load-file "~/.emacs.d/xcscope.el/xcscope.el")
+      (require 'xcscope)
+      (cscope-minor-mode)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; tabbing
