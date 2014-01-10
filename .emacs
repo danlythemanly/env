@@ -26,6 +26,11 @@
 ;; personal key bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun google-mac ()
+  "Google region in Chrome from a mac"
+  (interactive)
+  (shell-command-on-region (region-beginning) (region-end) "mac-chrome-open.bash"))
+
 (defun mac-copy ()
   "Copy region to mac clipboard"
   (interactive)
