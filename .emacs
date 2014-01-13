@@ -26,7 +26,17 @@
 ;; personal key bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun google-mac ()
+(defun linux-google ()
+  "Google region in Chrome from Linux"
+  (interactive)
+  (shell-command-on-region (region-beginning) (region-end) "linux-chrome-open.bash"))
+
+(defun linux-copy ()
+  "Copy region to linux clipboard"
+  (interactive)
+  (shell-command-on-region (region-beginning) (region-end) "xsel-copy"))
+
+(defun mac-google ()
   "Google region in Chrome from a mac"
   (interactive)
   (shell-command-on-region (region-beginning) (region-end) "mac-chrome-open.bash"))
@@ -36,13 +46,15 @@
   (interactive)
   (shell-command-on-region (region-beginning) (region-end) "pbcopy"))
 
-(defun linux-copy ()
-  "Copy region to linux clipboard"
-  (interactive)
-  (shell-command-on-region (region-beginning) (region-end) "xsel-copy"))
+(cond
+ ((string-equal system-type "darwin") 
+  (progn (defalias 'google 'mac-google)
+         (global-set-key "\C-cc" 'mac-copy)))
+ ((string-equal system-type "gnu/linux")
+  (progn (defalias 'google 'linux-google)
+         (global-set-key "\C-cc" 'linux-copy)))
+ )
 
-
-(global-set-key "\C-cc" 'mac-copy)
 (global-set-key "\C-cg" 'goto-line)
 
 (global-set-key (kbd "M-J")  'windmove-left)
