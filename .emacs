@@ -169,7 +169,11 @@
     (progn
       (load-file "~/.emacs.d/xcscope.el/xcscope.el")
       (require 'xcscope)
-      (cscope-minor-mode)))
+      (add-hook 'prog-mode-hook 'cscope-minor-mode)
+      (add-hook 'c-mode-common-hook 'cscope-minor-mode)
+      ))
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; tabbing
