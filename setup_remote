@@ -10,7 +10,8 @@ if [[ "X$RC" != "XDJWILLIA EMACS TRAMP" ]]; then
 fi
 
 MYHOST=`hostname -f`
-IP=`ping -c 1 $MYHOST 2>&1 |grep -o "from [^:]*" |sed s/"from "//`
+IP=`ping -c 1 $MYHOST 2>&1 |egrep -o "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}" |uniq`
+
 cat remote/emacsclient-tramp-find |sed s/"EMACSSERVER="/"EMACSSERVER=$IP"/ > /tmp/emacsclient-tramp-find
 chmod u+x /tmp/emacsclient-tramp-find
 
