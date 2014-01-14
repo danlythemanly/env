@@ -14,3 +14,18 @@ else
     echo "LINKING: .emacs"
     ln -i -s `pwd`/.emacs ~/.emacs
 fi
+
+RC=`cat ~/.bashrc | grep -o "DJWILLIA LOCAL EMACS"`
+if [[ "X$RC" != "XDJWILLIA LOCAL EMACS" ]]; then
+    echo "PATCHING: .bashrc"
+    echo -e "# DJWILLIA LOCAL EMACS\n. ~/env/bash_emacs" >> .bashrc
+else
+    echo "*skipping: .bashrc"
+fi
+
+if [ -d ~/.emacs.d/xcscope.el ]; then
+    echo "*skipping: ~/.emacs.d/xcscope.el"
+else
+    echo "FETCHING: ~/.emacs.d/xcscope.el"
+    git clone https://github.com/dkogan/xcscope.el.git ~/.emacs.d/xcscope.el
+fi
