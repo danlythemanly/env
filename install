@@ -18,7 +18,7 @@ fi
 RC=`cat ~/.bashrc | grep -o "DJWILLIA LOCAL EMACS"`
 if [[ "X$RC" != "XDJWILLIA LOCAL EMACS" ]]; then
     echo "PATCHING: .bashrc"
-    echo -e "# DJWILLIA LOCAL EMACS\n. ~/env/bash_emacs" >> .bashrc
+    echo -e "# DJWILLIA LOCAL EMACS\n. ~/env/bash_emacs" >> ~/.bashrc
 else
     echo "*skipping: .bashrc"
 fi
