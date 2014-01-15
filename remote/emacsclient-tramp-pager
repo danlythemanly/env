@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cat /dev/stdin | col -bx > /tmp/paged-output
+emacsclient-tramp-find djwillia /tmp/paged-output
+

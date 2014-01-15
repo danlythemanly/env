@@ -20,4 +20,5 @@ chmod u+x /tmp/emacsclient-tramp-find
 ssh djwillia@$1 "mkdir -p ~/bin"
 scp remote/.bash_emacs djwillia@$1:
 scp /tmp/emacsclient-tramp-find djwillia@$1:bin/
+scp remote/emacsclient-tramp-pager djwillia@$1:bin/
 scp remote/emacsclient-tramp-sudo djwillia@$1:bin/

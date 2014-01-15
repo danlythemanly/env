@@ -2,6 +2,7 @@ export PATH=~/bin:$PATH
 
 export ALTERNATE_EDITOR=""
 export EDITOR=emacs
+export PAGER='emacsclient-tramp-pager'
 
 alias emacs='emacsclient-tramp-find djwillia'
 alias sudo='emacsclient-tramp-sudo'
