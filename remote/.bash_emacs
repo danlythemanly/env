@@ -6,3 +6,4 @@ export PAGER='emacsclient-tramp-pager'
 
 alias emacs='emacsclient-tramp-find djwillia'
 alias sudo='emacsclient-tramp-sudo'
+alias man='emacsclient-tramp-man'
