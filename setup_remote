@@ -15,10 +15,14 @@ IP=`ping -c 1 $MYHOST 2>&1 |egrep -o "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{
 cat remote/emacsclient-tramp-find |sed s/"EMACSSERVER="/"EMACSSERVER=$IP"/ > /tmp/emacsclient-tramp-find
 chmod u+x /tmp/emacsclient-tramp-find
 
+cat remote/emacsclient-tramp-man |sed s/"EMACSSERVER="/"EMACSSERVER=$IP"/ > /tmp/emacsclient-tramp-man
+chmod u+x /tmp/emacsclient-tramp-man
+
 # set up keys?
 
 ssh djwillia@$1 "mkdir -p ~/bin"
 scp remote/.bash_emacs djwillia@$1:
 scp /tmp/emacsclient-tramp-find djwillia@$1:bin/
+scp /tmp/emacsclient-tramp-man djwillia@$1:bin/
 scp remote/emacsclient-tramp-pager djwillia@$1:bin/
 scp remote/emacsclient-tramp-sudo djwillia@$1:bin/

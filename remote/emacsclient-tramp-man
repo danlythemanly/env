@@ -1,0 +1,7 @@
+#!/bin/bash
+
+CMD=$1
+EMACSSERVER=
+
+ssh djwillia@$EMACSSERVER -t "bash -l -c \"bin/emacsclient-man \"$CMD\"\""
+
