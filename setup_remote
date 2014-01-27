@@ -26,3 +26,7 @@ scp /tmp/emacsclient-tramp-find djwillia@$1:bin/
 scp /tmp/emacsclient-tramp-man djwillia@$1:bin/
 scp remote/emacsclient-tramp-pager djwillia@$1:bin/
 scp remote/emacsclient-tramp-sudo djwillia@$1:bin/
+
+ssh djwillia@$1 "mkdir -p ~/.terminfo/e"
+scp remote/eterm-color djwillia@$1:.terminfo/e/
+scp remote/eterm-color.ti djwillia@$1:.terminfo/e/
