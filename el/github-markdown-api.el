@@ -14,7 +14,7 @@
 
 (defun github-markdown:construct-post-input (file &optional mode context)
   (let ((mode (or mode "gfm"))
-        (context (or context "github/gollun"))
+        (context (or context "github/gollum"))
         (data (github-markdown:read-markdown file)))
     (json-encode `((mode . ,mode) (context . ,context) (text . ,data)))))
 
