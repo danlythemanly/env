@@ -191,14 +191,20 @@
 ;;                      (alternate binding: "T" --> "tell").
 ;;      C-c s D         Dired this buffer's directory.
 
+(defun xcscope-key-override ()
+  "Override M-K for xcscope mode."
+  (local-set-key (kbd "M-K")  'windmove-down))
+
 (if (file-exists-p "~/.emacs.d/xcscope.el/xcscope.el")
     (progn
       (load-file "~/.emacs.d/xcscope.el/xcscope.el")
       (require 'xcscope)
+      (add-hook 'cscope-list-entry-hook 'xcscope-key-override)
+
       (add-hook 'prog-mode-hook 'cscope-minor-mode)
       (add-hook 'c-mode-common-hook 'cscope-minor-mode)
-      ))
 
+      ))
 
 (if (file-exists-p "~/.emacs.d/github-markdown-api.el")
     (load-file "~/.emacs.d/github-markdown-api.el"))
