@@ -56,6 +56,10 @@
   (interactive)
   (shell-command "pbpaste" t))
 
+(defun linux-paste ()
+  "Paste region from linux clipboard"
+  (interactive)
+  (shell-command "xsel -b" t))
 
 (cond
  ((string-equal system-type "darwin") 
@@ -69,7 +73,9 @@
          (set-face-attribute 'default nil :height 130)))
  ((string-equal system-type "gnu/linux")
   (progn (defalias 'google 'linux-google)
-         (global-set-key "\C-cc" 'linux-copy)))
+         (server-start)
+         (global-set-key "\C-cc" 'linux-copy)
+         (global-set-key "\C-cv" 'linux-paste)))
  )
 
 (global-set-key "\C-cg" 'goto-line)
@@ -259,29 +265,35 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(inhibit-startup-screen t)
  '(custom-enabled-themes (quote (wombat-ediff)))
- '(custom-safe-themes
-   (quote
-    ("fe0cbe92623d342b82c183d8900e95fcf47dbeb1c405b02c560246788180756e" "8de31e41a63ef7e761379c74107220dfb99fdff18e3d448f5fe45eca448b6124" "d7a822447c7c62453ef2e3a58a66a91ab7399da8b2051f2ff287a6b752ce14d7" default))))
+ '(custom-safe-themes (quote ("fe0cbe92623d342b82c183d8900e95fcf47dbeb1c405b02c560246788180756e" "8de31e41a63ef7e761379c74107220dfb99fdff18e3d448f5fe45eca448b6124" "d7a822447c7c62453ef2e3a58a66a91ab7399da8b2051f2ff287a6b752ce14d7" default)))
+ '(inhibit-startup-screen t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ediff-current-diff-A ((((class color) (min-colors 16)) (:background "thistle1" :foreground "darkorchid4"))))
- '(ediff-current-diff-Ancestor ((((class color) (min-colors 16)) (:background "thistle1" :foreground "darkorchid4"))))
- '(ediff-current-diff-B ((((class color) (min-colors 16)) (:background "thistle1" :foreground "DarkOrchid4"))))
- '(ediff-current-diff-C ((((class color) (min-colors 16)) (:background "thistle1" :foreground "Darkorchid4"))))
- '(ediff-even-diff-Ancestor ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))))
- '(ediff-even-diff-B ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))))
- '(ediff-fine-diff-A ((((class color) (min-colors 16)) (:background "rosybrown1" :foreground "darkorchid4"))))
- '(ediff-fine-diff-Ancestor ((((class color) (min-colors 16)) (:background "rosybrown1" :foreground "darkorchid4"))))
- '(ediff-fine-diff-B ((((class color) (min-colors 16)) (:background "rosybrown1" :foreground "darkorchid4"))))
- '(ediff-fine-diff-C ((((class color) (min-colors 16)) (:background "rosybrown1" :foreground "darkorchid4"))))
- '(ediff-odd-diff-A ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))))
- '(ediff-odd-diff-Ancestor ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))))
- '(ediff-odd-diff-C ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black")))))
+ '(ediff-current-diff-A ((((class color) (min-colors 16)) (:background "thistle1" :foreground "darkorchid4"))) t)
+ '(ediff-current-diff-Ancestor ((((class color) (min-colors 16)) (:background "thistle1" :foreground "darkorchid4"))) t)
+ '(ediff-current-diff-B ((((class color) (min-colors 16)) (:background "thistle1" :foreground "DarkOrchid4"))) t)
+ '(ediff-current-diff-C ((((class color) (min-colors 16)) (:background "thistle1" :foreground "Darkorchid4"))) t)
+ '(ediff-even-diff-Ancestor ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
+ '(ediff-even-diff-B ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
+ '(ediff-fine-diff-A ((((class color) (min-colors 16)) (:background "rosybrown1" :foreground "darkorchid4"))) t)
+ '(ediff-fine-diff-Ancestor ((((class color) (min-colors 16)) (:background "rosybrown1" :foreground "darkorchid4"))) t)
+ '(ediff-fine-diff-B ((((class color) (min-colors 16)) (:background "rosybrown1" :foreground "darkorchid4"))) t)
+ '(ediff-fine-diff-C ((((class color) (min-colors 16)) (:background "rosybrown1" :foreground "darkorchid4"))) t)
+ '(ediff-odd-diff-A ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
+ '(ediff-odd-diff-Ancestor ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
+ '(ediff-odd-diff-C ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
+ '(term-color-black ((t (:background "#242424" :foreground "#242424"))))
+ '(term-color-blue ((t (:background "#8ac6f2" :foreground "#8ac6f2"))))
+ '(term-color-cyan ((t (:background "#ccaa8f" :foreground "#ccaa8f"))))
+ '(term-color-green ((t (:background "#95e454" :foreground "#95e454"))))
+ '(term-color-magenta ((t (:background "#333366" :foreground "#333366"))))
+ '(term-color-red ((t (:background "#e5786d" :foreground "#e5786d"))))
+ '(term-color-white ((t (:background "#f6f3e8" :foreground "#f6f3e8"))))
+ '(term-color-yellow ((t (:background "#cae682" :foreground "#cae682")))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; flyspell
