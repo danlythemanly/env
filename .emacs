@@ -294,9 +294,6 @@
  '(ediff-fine-diff-C ((((class color) (min-colors 16)) (:background "rosybrown1" :foreground "darkorchid4"))) t)
  '(ediff-odd-diff-A ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
  '(ediff-odd-diff-Ancestor ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
-<<<<<<< HEAD
- '(ediff-odd-diff-C ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t))
-=======
  '(ediff-odd-diff-C ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
  '(term-color-black ((t (:background "#242424" :foreground "#242424"))))
  '(term-color-blue ((t (:background "#8ac6f2" :foreground "#8ac6f2"))))
@@ -306,7 +303,6 @@
  '(term-color-red ((t (:background "#e5786d" :foreground "#e5786d"))))
  '(term-color-white ((t (:background "#f6f3e8" :foreground "#f6f3e8"))))
  '(term-color-yellow ((t (:background "#cae682" :foreground "#cae682")))))
->>>>>>> 1db55a3a7a6237a123b938e961b22efea799c71d
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; flyspell
