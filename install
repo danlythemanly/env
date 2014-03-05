@@ -8,6 +8,16 @@ for f in `ls bin`; do
         ln -i -s `pwd`/bin/$f ~/bin/$f
     fi
 done
+
+for f in `ls el`; do 
+    if [ -f ~/.emacs.d/$f ]; then
+        echo "*skipping: $f"
+    else
+        echo "LINKING: $f"
+        ln -i -s `pwd`/el/$f ~/.emacs.d/$f
+    fi
+done
+
 if [ -f ~/.emacs ]; then
     echo "*skipping: .emacs"
 else

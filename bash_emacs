@@ -3,6 +3,7 @@ export PATH=~/bin:$PATH
 export ALTERNATE_EDITOR=""
 export EDITOR='emacsclient-find'
 export PAGER='emacsclient-pager'
+export GIT_PAGER='emacsclient-pager'
 
 alias emacs='emacsclient-find'
 alias sudo='emacsclient-sudo'

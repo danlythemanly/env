@@ -61,6 +61,10 @@
   (interactive)
   (shell-command "pbpaste" t))
 
+(defun linux-paste ()
+  "Paste region from linux clipboard"
+  (interactive)
+  (shell-command "xsel -b" t))
 
 (load "server")
 (unless (server-running-p) (server-start))
@@ -72,6 +76,7 @@
          (unless (server-running-p) (server-start))
          (global-set-key "\C-cc" 'mac-copy)
          (global-set-key "\C-cv" 'mac-paste)
+         (setq x-alt-keysym 'meta)
          (set-face-attribute 'default nil :family "Consolas")
          (set-face-attribute 'default nil :height 130)))
  ((string-equal system-type "gnu/linux")
@@ -81,6 +86,7 @@
  )
 
 (global-set-key "\C-cg" 'goto-line)
+(global-set-key "\C-ch" 'hl-line-mode)
 
 (global-set-key (kbd "M-J")  'windmove-left)
 (global-set-key (kbd "M-L") 'windmove-right)
@@ -153,15 +159,33 @@
         (kill-buffer buffer))
     ad-do-it))
 
+(defun doc-view-keys()
+  "Make movement keys work for doc-view mode."
+  (progn
+    (auto-revert-mode)
+    (define-key doc-view-mode-map (kbd "M-J")
+      '(lambda ()
+         "windmove-left for docview"
+         (interactive)
+         (windmove-left 1)))
+    (define-key doc-view-mode-map (kbd "M-L")
+      '(lambda ()
+         "windmove-right for docview"
+         (interactive)
+         (windmove-right 1)))
+    (define-key doc-view-mode-map (kbd "M-I")
+      '(lambda ()
+         "windmove-up for docview"
+         (interactive)
+         (windmove-up 1)))
+    (define-key doc-view-mode-map (kbd "M-K")
+      '(lambda ()
+         "windmove-down for docview"
+         (interactive)
+         (windmove-down 1)))))
 
-(defun docview-key-override ()
-  "Override movement keys for docview mode."
-  (local-set-key (kbd "M-J") 'windmove-left)
-  (local-set-key (kbd "M-L") 'windmove-right)
-  (local-set-key (kbd "M-I") 'windmove-up)
-  (local-set-key (kbd "M-K") 'windmove-down))
-
-(add-hook 'doc-view-mode-hook 'docview-key-override)
+(add-hook 'doc-view-mode-hook 'doc-view-keys)
+(setq doc-view-continuous t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; cscope 
@@ -248,8 +272,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (wombat)))
- '(tooltip-mode nil))
+ '(tooltip-mode nil)
+ '(custom-enabled-themes (quote (wombat-ediff)))
+ '(custom-safe-themes (quote ("fe0cbe92623d342b82c183d8900e95fcf47dbeb1c405b02c560246788180756e" "8de31e41a63ef7e761379c74107220dfb99fdff18e3d448f5fe45eca448b6124" "d7a822447c7c62453ef2e3a58a66a91ab7399da8b2051f2ff287a6b752ce14d7" default)))
+ '(inhibit-startup-screen t))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -267,7 +294,19 @@
  '(ediff-fine-diff-C ((((class color) (min-colors 16)) (:background "rosybrown1" :foreground "darkorchid4"))) t)
  '(ediff-odd-diff-A ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
  '(ediff-odd-diff-Ancestor ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
+<<<<<<< HEAD
  '(ediff-odd-diff-C ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t))
+=======
+ '(ediff-odd-diff-C ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
+ '(term-color-black ((t (:background "#242424" :foreground "#242424"))))
+ '(term-color-blue ((t (:background "#8ac6f2" :foreground "#8ac6f2"))))
+ '(term-color-cyan ((t (:background "#ccaa8f" :foreground "#ccaa8f"))))
+ '(term-color-green ((t (:background "#95e454" :foreground "#95e454"))))
+ '(term-color-magenta ((t (:background "#333366" :foreground "#333366"))))
+ '(term-color-red ((t (:background "#e5786d" :foreground "#e5786d"))))
+ '(term-color-white ((t (:background "#f6f3e8" :foreground "#f6f3e8"))))
+ '(term-color-yellow ((t (:background "#cae682" :foreground "#cae682")))))
+>>>>>>> 1db55a3a7a6237a123b938e961b22efea799c71d
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; flyspell
@@ -303,3 +342,12 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1) 
+
+(setq initial-scratch-message
+      (concat 
+      ";;  _          _ _                                        \n"
+      ";; | |__   ___| | | ___     ___ _ __ ___   __ _  ___ ___  \n"
+      ";; | '_ \\ / _ \\ | |/ _ \\   / _ \\ '_ ` _ \\ / _` |/ __/ __| \n"
+      ";; | | | |  __/ | | (_) | |  __/ | | | | | (_| | (__\\__ \\ \n"
+      ";; |_| |_|\\___|_|_|\\___/   \\___|_| |_| |_|\\__,_|\\___|___/ \n"
+      ";;                                                        \n"))
