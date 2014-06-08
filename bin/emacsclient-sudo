@@ -2,8 +2,11 @@
 
 
 if [[ $1 == "emacs" ]]; then
-    F=`echo "$(dirname $(readlink -e $2))/$(basename $2)"`
-    emacsclient -e "(find-file-other-window \"/sudo::$F\")"
+    R=`dirname $2`
+    D=`readlink -e $R`
+    F=`basename $2`
+    X=`echo "$D/$F"`
+    emacsclient -e "(find-file-other-window \"/sudo::$X\")"
 else
     /usr/bin/sudo "$@"
 fi
