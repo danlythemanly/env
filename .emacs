@@ -61,11 +61,6 @@
   (interactive)
   (shell-command "pbpaste" t))
 
-(defun linux-paste ()
-  "Paste region from linux clipboard"
-  (interactive)
-  (shell-command "xsel -b" t))
-
 (load "server")
 (unless (server-running-p) (server-start))
 
@@ -347,3 +342,4 @@
       ";; | | | |  __/ | | (_) | |  __/ | | | | | (_| | (__\\__ \\ \n"
       ";; |_| |_|\\___|_|_|\\___/   \\___|_| |_| |_|\\__,_|\\___|___/ \n"
       ";;                                                        \n"))
+(put 'downcase-region 'disabled nil)
