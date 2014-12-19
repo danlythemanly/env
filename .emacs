@@ -54,10 +54,20 @@
   (interactive)
   (shell-command-on-region (region-beginning) (region-end) "linux-chrome-open.bash"))
 
+(defun linux-copy2 ()
+  "Copy region to linux clipboard using x-set-selection"
+  (interactive)
+  (x-set-selection 'CLIPBOARD (buffer-substring (region-beginning) (region-end))))
+
 (defun linux-copy ()
   "Copy region to linux clipboard"
   (interactive)
   (shell-command-on-region (region-beginning) (region-end) "xsel-copy"))
+
+(defun linux-paste ()
+  "Paste from linux clipboard"
+  (interactive)
+  (shell-command "xsel -b -o" t))
 
 (defun mac-google ()
   "Google region in Chrome from a mac"
@@ -74,6 +84,8 @@
   (interactive)
   (shell-command "pbpaste" t))
 
+(load "server")
+(unless (server-running-p) (server-start))
 
 (cond
  ((string-equal system-type "darwin") 
@@ -88,7 +100,8 @@
          (set-face-attribute 'default nil :height 130)))
  ((string-equal system-type "gnu/linux")
   (progn (defalias 'google 'linux-google)
-         (global-set-key "\C-cc" 'linux-copy)))
+         (global-set-key "\C-cc" 'linux-copy2)
+         (global-set-key "\C-cv" 'linux-paste)))
  )
 
 (global-set-key "\C-cg" 'goto-line)
@@ -269,11 +282,6 @@
               tab-width 4
               indent-tabs-mode nil)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ediff colors
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; flyspell
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -320,7 +328,6 @@
       ";; |_| |_|\\___|_|_|\\___/   \\___|_| |_| |_|\\__,_|\\___|___/ \n"
       ";;                                                        \n"))
 
-
 (setq inhibit-splash-screen t)
 (theme-dark)
 (custom-set-variables
@@ -328,6 +335,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(tooltip-mode nil)
+ '(inhibit-startup-screen t))
  '(mouse-wheel-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -339,3 +348,4 @@
 (setq asm-comment-char ?\#)
 
 (put 'upcase-region 'disabled nil)
+(put 'downcase-region 'disabled nil)
