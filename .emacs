@@ -36,6 +36,11 @@
   (interactive)
   (shell-command-on-region (region-beginning) (region-end) "linux-chrome-open.bash"))
 
+(defun linux-copy2 ()
+  "Copy region to linux clipboard using x-set-selection"
+  (interactive)
+  (x-set-selection 'CLIPBOARD (buffer-substring (region-beginning) (region-end))))
+
 (defun linux-copy ()
   "Copy region to linux clipboard"
   (interactive)
@@ -76,7 +81,7 @@
          (set-face-attribute 'default nil :height 130)))
  ((string-equal system-type "gnu/linux")
   (progn (defalias 'google 'linux-google)
-         (global-set-key "\C-cc" 'linux-copy)
+         (global-set-key "\C-cc" 'linux-copy2)
          (global-set-key "\C-cv" 'linux-paste)))
  )
 
