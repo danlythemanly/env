@@ -343,7 +343,27 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(ediff-current-diff-A ((((class color) (min-colors 16)) (:background "thistle1" :foreground "darkorchid4"))) t)
+ '(ediff-current-diff-Ancestor ((((class color) (min-colors 16)) (:background "thistle1" :foreground "darkorchid4"))) t)
+ '(ediff-current-diff-B ((((class color) (min-colors 16)) (:background "thistle1" :foreground "DarkOrchid4"))) t)
+ '(ediff-current-diff-C ((((class color) (min-colors 16)) (:background "thistle1" :foreground "Darkorchid4"))) t)
+ '(ediff-even-diff-Ancestor ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
+ '(ediff-even-diff-B ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
+ '(ediff-fine-diff-A ((((class color) (min-colors 16)) (:background "rosybrown1" :foreground "darkorchid4"))) t)
+ '(ediff-fine-diff-Ancestor ((((class color) (min-colors 16)) (:background "rosybrown1" :foreground "darkorchid4"))) t)
+ '(ediff-fine-diff-B ((((class color) (min-colors 16)) (:background "rosybrown1" :foreground "darkorchid4"))) t)
+ '(ediff-fine-diff-C ((((class color) (min-colors 16)) (:background "rosybrown1" :foreground "darkorchid4"))) t)
+ '(ediff-odd-diff-A ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
+ '(ediff-odd-diff-Ancestor ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
+ '(ediff-odd-diff-C ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
+ '(term-color-black ((t (:background "#242424" :foreground "#242424"))))
+ '(term-color-blue ((t (:background "#8ac6f2" :foreground "#8ac6f2"))))
+ '(term-color-cyan ((t (:background "#ccaa8f" :foreground "#ccaa8f"))))
+ '(term-color-green ((t (:background "#95e454" :foreground "#95e454"))))
+ '(term-color-magenta ((t (:background "#333366" :foreground "#333366"))))
+ '(term-color-red ((t (:background "#e5786d" :foreground "#e5786d"))))
+ '(term-color-white ((t (:background "#f6f3e8" :foreground "#f6f3e8"))))
+ '(term-color-yellow ((t (:background "#cae682" :foreground "#cae682")))))
 
 (setq asm-comment-char ?\#)
 
