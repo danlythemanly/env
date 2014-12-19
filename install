@@ -25,6 +25,13 @@ else
     ln -i -s `pwd`/.emacs ~/.emacs
 fi
 
+if [ -f ~/.gnus ]; then
+    echo "*skipping: .gnus"
+else
+    echo "LINKING: .gnus"
+    ln -i -s `pwd`/.gnus ~/.gnus
+fi
+
 RC=`cat ~/.bashrc | grep -o "DJWILLIA LOCAL EMACS"`
 if [[ "X$RC" != "XDJWILLIA LOCAL EMACS" ]]; then
     echo "PATCHING: .bashrc"
