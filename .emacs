@@ -336,7 +336,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(tooltip-mode nil)
- '(inhibit-startup-screen t))
+ '(inhibit-startup-screen t)
  '(mouse-wheel-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
