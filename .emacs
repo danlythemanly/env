@@ -26,6 +26,24 @@
 ;; personal key bindings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun theme-dark ()
+  "Set dark theme"
+  (interactive)
+  (disable-theme 'whiteboard)
+  (load-theme 'wombat t))
+
+(defun theme-light ()
+  "Set light theme"
+  (interactive)
+  (disable-theme 'wombat-ediff)
+  (load-theme 'whiteboard t))
+
+
+(defun toggle-theme ()
+  "Toggle between light or dark theme"
+  (interactive)
+  (load-theme 'wombat-ediff t))
+
 (defun figlet ()
   "Replace region with figlet representation"
   (interactive)
@@ -35,6 +53,11 @@
   "Google region in Chrome from Linux"
   (interactive)
   (shell-command-on-region (region-beginning) (region-end) "linux-chrome-open.bash"))
+
+(defun linux-copy2 ()
+  "Copy region to linux clipboard using x-set-selection"
+  (interactive)
+  (x-set-selection 'CLIPBOARD (buffer-substring (region-beginning) (region-end))))
 
 (defun linux-copy ()
   "Copy region to linux clipboard"
@@ -72,11 +95,12 @@
          (global-set-key "\C-cc" 'mac-copy)
          (global-set-key "\C-cv" 'mac-paste)
          (setq x-alt-keysym 'meta)
+         (setq exec-path (append exec-path '("/usr/local/bin")))
          (set-face-attribute 'default nil :family "Consolas")
          (set-face-attribute 'default nil :height 130)))
  ((string-equal system-type "gnu/linux")
   (progn (defalias 'google 'linux-google)
-         (global-set-key "\C-cc" 'linux-copy)
+         (global-set-key "\C-cc" 'linux-copy2)
          (global-set-key "\C-cv" 'linux-paste)))
  )
 
@@ -242,7 +266,7 @@
   (progn
     (write-region
      (with-output-to-string
-       (shell-command-on-region (point-min) (point-max) "markdown" standard-output))
+       (shell-command-on-region (point-min) (point-max) "/usr/local/bin/markdown" standard-output))
      nil "/tmp/md.html" nil)
     (find-file "/tmp/md.html")
     (rename-buffer "*rendered-markdown*")
@@ -253,51 +277,10 @@
 ;; tabbing
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq-default c-basic-offset 4
+(setq-default c-basic-offset 8
 	      c-file-style "bsd"
-              tab-width 4
-              indent-tabs-mode nil)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ediff colors
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(tooltip-mode nil)
- '(custom-enabled-themes (quote (wombat-ediff)))
- '(custom-safe-themes (quote ("fe0cbe92623d342b82c183d8900e95fcf47dbeb1c405b02c560246788180756e" "8de31e41a63ef7e761379c74107220dfb99fdff18e3d448f5fe45eca448b6124" "d7a822447c7c62453ef2e3a58a66a91ab7399da8b2051f2ff287a6b752ce14d7" default)))
- '(inhibit-startup-screen t))
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ediff-current-diff-A ((((class color) (min-colors 16)) (:background "thistle1" :foreground "darkorchid4"))) t)
- '(ediff-current-diff-Ancestor ((((class color) (min-colors 16)) (:background "thistle1" :foreground "darkorchid4"))) t)
- '(ediff-current-diff-B ((((class color) (min-colors 16)) (:background "thistle1" :foreground "DarkOrchid4"))) t)
- '(ediff-current-diff-C ((((class color) (min-colors 16)) (:background "thistle1" :foreground "Darkorchid4"))) t)
- '(ediff-even-diff-Ancestor ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
- '(ediff-even-diff-B ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
- '(ediff-fine-diff-A ((((class color) (min-colors 16)) (:background "rosybrown1" :foreground "darkorchid4"))) t)
- '(ediff-fine-diff-Ancestor ((((class color) (min-colors 16)) (:background "rosybrown1" :foreground "darkorchid4"))) t)
- '(ediff-fine-diff-B ((((class color) (min-colors 16)) (:background "rosybrown1" :foreground "darkorchid4"))) t)
- '(ediff-fine-diff-C ((((class color) (min-colors 16)) (:background "rosybrown1" :foreground "darkorchid4"))) t)
- '(ediff-odd-diff-A ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
- '(ediff-odd-diff-Ancestor ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
- '(ediff-odd-diff-C ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
- '(term-color-black ((t (:background "#242424" :foreground "#242424"))))
- '(term-color-blue ((t (:background "#8ac6f2" :foreground "#8ac6f2"))))
- '(term-color-cyan ((t (:background "#ccaa8f" :foreground "#ccaa8f"))))
- '(term-color-green ((t (:background "#95e454" :foreground "#95e454"))))
- '(term-color-magenta ((t (:background "#333366" :foreground "#333366"))))
- '(term-color-red ((t (:background "#e5786d" :foreground "#e5786d"))))
- '(term-color-white ((t (:background "#f6f3e8" :foreground "#f6f3e8"))))
- '(term-color-yellow ((t (:background "#cae682" :foreground "#cae682")))))
+              tab-width 8
+              indent-tabs-mode t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; flyspell
@@ -314,6 +297,8 @@
                              ruby-mode-hook java-mode-hook))
 
 (put 'nxml-mode 'flyspell-mode-predicate 'sgml-mode-flyspell-verify)
+
+(setq auto-mode-alist (cons '("\\.md$" . text-mode) auto-mode-alist))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; backups
@@ -343,4 +328,45 @@
       ";; | | | |  __/ | | (_) | |  __/ | | | | | (_| | (__\\__ \\ \n"
       ";; |_| |_|\\___|_|_|\\___/   \\___|_| |_| |_|\\__,_|\\___|___/ \n"
       ";;                                                        \n"))
+
+(setq inhibit-splash-screen t)
+(theme-dark)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(tooltip-mode nil)
+ '(inhibit-startup-screen t)
+ '(mouse-wheel-mode nil))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ediff-current-diff-A ((((class color) (min-colors 16)) (:background "thistle1" :foreground "darkorchid4"))) t)
+ '(ediff-current-diff-Ancestor ((((class color) (min-colors 16)) (:background "thistle1" :foreground "darkorchid4"))) t)
+ '(ediff-current-diff-B ((((class color) (min-colors 16)) (:background "thistle1" :foreground "DarkOrchid4"))) t)
+ '(ediff-current-diff-C ((((class color) (min-colors 16)) (:background "thistle1" :foreground "Darkorchid4"))) t)
+ '(ediff-even-diff-Ancestor ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
+ '(ediff-even-diff-B ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
+ '(ediff-fine-diff-A ((((class color) (min-colors 16)) (:background "rosybrown1" :foreground "darkorchid4"))) t)
+ '(ediff-fine-diff-Ancestor ((((class color) (min-colors 16)) (:background "rosybrown1" :foreground "darkorchid4"))) t)
+ '(ediff-fine-diff-B ((((class color) (min-colors 16)) (:background "rosybrown1" :foreground "darkorchid4"))) t)
+ '(ediff-fine-diff-C ((((class color) (min-colors 16)) (:background "rosybrown1" :foreground "darkorchid4"))) t)
+ '(ediff-odd-diff-A ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
+ '(ediff-odd-diff-Ancestor ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
+ '(ediff-odd-diff-C ((((class color) (min-colors 16)) (:background "lightgrey" :foreground "black"))) t)
+ '(term-color-black ((t (:background "#242424" :foreground "#242424"))))
+ '(term-color-blue ((t (:background "#8ac6f2" :foreground "#8ac6f2"))))
+ '(term-color-cyan ((t (:background "#ccaa8f" :foreground "#ccaa8f"))))
+ '(term-color-green ((t (:background "#95e454" :foreground "#95e454"))))
+ '(term-color-magenta ((t (:background "#333366" :foreground "#333366"))))
+ '(term-color-red ((t (:background "#e5786d" :foreground "#e5786d"))))
+ '(term-color-white ((t (:background "#f6f3e8" :foreground "#f6f3e8"))))
+ '(term-color-yellow ((t (:background "#cae682" :foreground "#cae682")))))
+
+(setq asm-comment-char ?\#)
+
+(put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
