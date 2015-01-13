@@ -1,5 +1,7 @@
 #!/bin/bash
 
+mkdir -p ~/bin
+
 for f in `ls bin`; do 
     if [ -f ~/bin/$f ]; then
         echo "*skipping: $f"
