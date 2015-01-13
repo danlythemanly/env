@@ -370,3 +370,6 @@
 
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
+
+;; disable super key (map it to meta so we have two meta keys)
+(setq x-super-keysym 'meta)
