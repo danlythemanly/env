@@ -277,10 +277,10 @@
 ;; tabbing
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq-default c-basic-offset 8
+(setq-default c-basic-offset 4
 	      c-file-style "bsd"
-              tab-width 8
-              indent-tabs-mode t)
+              tab-width 4
+              indent-tabs-mode nil)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; flyspell
