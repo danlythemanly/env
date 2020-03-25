@@ -49,3 +49,10 @@ else
     echo "FETCHING: ~/.emacs.d/xcscope.el"
     git clone https://github.com/dkogan/xcscope.el.git ~/.emacs.d/xcscope.el
 fi
+
+if [ -d ~/.emacs.d/go-mode.el ]; then
+    echo "*skipping: ~/.emacs.d/go-mode.el"
+else
+    echo "FETCHING: ~/.emacs.d/go-mode.el"
+    git clone https://github.com/dominikh/go-mode.el.git ~/.emacs.d/go-mode.el
+fi

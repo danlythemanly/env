@@ -258,6 +258,14 @@
 
       ))
 
+(if (file-exists-p "~/.emacs.d/go-mode.el")
+    (progn
+      (add-to-list 'load-path "~/.emacs.d/go-mode.el")
+      (autoload 'go-mode "go-mode" nil t)
+      (add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
+      ))
+
+
 (if (file-exists-p "~/.emacs.d/github-markdown-api.el")
     (load-file "~/.emacs.d/github-markdown-api.el"))
 
@@ -384,3 +392,5 @@
 (add-to-list 'interpreter-mode-alist '("ocamlrun" . caml-mode))
 (add-to-list 'interpreter-mode-alist '("ocaml" . caml-mode))
 (require 'caml-font)
+
+
